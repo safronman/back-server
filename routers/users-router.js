@@ -6,8 +6,13 @@ const usersRouter = express.Router()
 // обработка query параметров
 usersRouter.get('/', async (req, res) => {
     const search = req.query.search
-    let users = await getUsers(search)
-    res.send(users)
+    try {
+        let users = await getUsers(search)
+        res.send(users)
+    } catch (e) {
+        console.error(e);
+        res.sendStatus(400)
+    }
 
     // Если нужно указать статус отличный от 200, то обращаемся к методу status и потом вызываем json,
     // куда передаем то что хотим отправить на front
@@ -17,33 +22,53 @@ usersRouter.get('/', async (req, res) => {
 // параметры строки. Example: users/1
 usersRouter.get('/:id', async (req, res) => {
     const userId = req.params.id;
-    const user = await getUser(userId)
-    if (user) {
-        res.send(user)
-    } else {
-        res.send(404)
+    try {
+        const user = await getUser(userId)
+        if (user) {
+            res.send(user)
+        } else {
+            res.sendStatus(404)
+        }
+    } catch (e) {
+        console.error(e);
+        res.sendStatus(400)
     }
 })
 
 
 usersRouter.delete('/:id', async (req, res) => {
     const userId = req.params.id;
-    await deleteUser(userId)
-    res.send(204)
+    try {
+        await deleteUser(userId)
+        res.sendStatus(204)
+    } catch (e) {
+        console.error(e);
+        res.sendStatus(400)
+    }
 })
 
 // get body from post request
 usersRouter.post('/', async (req, res) => {
     const name = req.body.name
-    await addUser(name)
-    res.send({success: true})
+    try {
+        await addUser(name)
+        res.send({success: true})
+    } catch (e) {
+        console.error(e);
+        res.sendStatus(400)
+    }
 })
 
 usersRouter.put('/', async (req, res) => {
     const name = req.body.name
     const id = req.body.id
-    await updateUser(id, name)
-    res.send({success: true})
+    try {
+        await updateUser(id, name)
+        res.send({success: true})
+    } catch (e) {
+        console.error(e);
+        res.sendStatus(400)
+    }
 })
 
 module.exports = usersRouter
