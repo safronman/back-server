@@ -1,10 +1,11 @@
 const express = require('express')
-const {addUser, getUsers, getUser, deleteUser, updateUser} = require('../repository')
+const {addUser, getUsers, getUser, deleteUser, updateUser} = require('../repository/usersRepository')
 
-const router = express.Router()
+const usersRouter = express.Router()
 
 // обработка query параметров
-router.get('/', async (req, res) => {
+usersRouter.get('/', async (req, res) => {
+    debugger
     const search = req.query.search
     let users = await getUsers(search)
     res.send(users)
@@ -15,7 +16,7 @@ router.get('/', async (req, res) => {
 })
 
 // параметры строки. Example: users/1
-router.get('/:id', async (req, res) => {
+usersRouter.get('/:id', async (req, res) => {
     const userId = req.params.id;
     const user = await getUser(userId)
     if (user) {
@@ -26,26 +27,26 @@ router.get('/:id', async (req, res) => {
 })
 
 
-router.delete('/:id', async (req, res) => {
+usersRouter.delete('/:id', async (req, res) => {
     const userId = req.params.id;
     await deleteUser(userId)
     res.send(204)
 })
 
 // get body from post request
-router.post('/', async (req, res) => {
+usersRouter.post('/', async (req, res) => {
     const name = req.body.name
     await addUser(name)
     res.send({success: true})
 })
 
-router.put('/', async (req, res) => {
+usersRouter.put('/', async (req, res) => {
     const name = req.body.name
     const id = req.body.id
     await updateUser(id, name)
     res.send({success: true})
 })
 
-module.exports = router;
+module.exports = usersRouter
 
 

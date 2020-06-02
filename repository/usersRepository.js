@@ -1,13 +1,4 @@
-const mongoose = require('mongoose');
-
-// создаем схему
-const userSchema = new mongoose.Schema({
-    name: String
-});
-
-// создаем модуль (класс), на основе которого будем создавать однотипные объекты
-const collectionName = 'heroes'
-const User = mongoose.model(`${collectionName}`, userSchema);
+const User = require('../model/db')
 
 const getUsers = (search) => {
     // SEARCH
