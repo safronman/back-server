@@ -1,11 +1,10 @@
 const express = require('express')
-const {addUser, getUsers, getUser, deleteUser, updateUser} = require('../repository/usersRepository')
+const {addUser, getUsers, getUser, deleteUser, updateUser} = require('../repository/users-repository')
 
 const usersRouter = express.Router()
 
 // обработка query параметров
 usersRouter.get('/', async (req, res) => {
-    debugger
     const search = req.query.search
     let users = await getUsers(search)
     res.send(users)

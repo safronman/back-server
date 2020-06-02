@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const UserSchema = require('../model/models');
+const {UserSchema, TaskSchema} = require('../model/models');
 
 const dbName = 'south_park'
 const MONGO_DB_URI = `mongodb+srv://admin:7E0tKolBSj6eekY8@cluster0-aihri.mongodb.net/${dbName}?retryWrites=true&w=majority`
@@ -21,8 +21,13 @@ db.once("open", () => console.log("we are connected!"))
 })*/
 
 
-const collectionName = 'heroes'
+const collectionName = 'User'
 const User = mongoose.model(`${collectionName}`, UserSchema);
-module.exports = User
+const Task = mongoose.model(`Task`, TaskSchema);
+
+exports.User = User
+exports.Task = Task
+
+
 
 

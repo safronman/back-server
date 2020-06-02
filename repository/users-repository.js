@@ -1,4 +1,4 @@
-const User = require('../model/db')
+const {User} = require('../model/db')
 
 const getUsers = (search) => {
     // SEARCH
