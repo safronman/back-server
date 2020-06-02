@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.16",
+    "uuid": "^8.1.0"
+  },
+  "name": "back-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --inspect index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/safronman/back-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/safronman/back-server/issues"
+  },
+  "homepage": "https://github.com/safronman/back-server#readme",
+  "description": ""
+}
