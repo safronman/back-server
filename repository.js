@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // создаем модуль (класс), на основе которого будем создавать однотипные объекты
-const collectionName = 'users'
+const collectionName = 'heroes'
 const User = mongoose.model(`${collectionName}`, userSchema);
 
 const getUsers = (search) => {
